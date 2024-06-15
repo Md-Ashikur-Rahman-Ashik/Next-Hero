@@ -19,6 +19,10 @@ const Navbar = () => {
       title: "Contacts",
       path: "/contacts",
     },
+    {
+      title: "Blogs",
+      path: "/blogs",
+    },
   ];
 
   const handler = () => {
@@ -26,7 +30,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="mb-10">
       <nav className="px-6 py-4 bg-blue-50 flex justify-between items-center">
         <h6 className="font-bold text-3xl">
           <Link href={"/"}>
