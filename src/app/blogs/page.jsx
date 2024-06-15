@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const blogs = [
@@ -38,9 +39,13 @@ const page = () => {
     <div className="card card-compact container rounded-xl mx-auto max-w-fit">
       {blogs.map((blog) => (
         <div key={blog.slug} className="border-2 p-12">
-          <h3>{blog.title}</h3>
+          <h3 className="text-center">{blog.title}</h3>
           <h3>{blog.description}</h3>
-          <button>View Details</button>
+          <div className="flex justify-center mt-4">
+            <button className="bg-blue-50 py-1 px-2 text-cyan-500 font-bold rounded-xl">
+              <Link href={`/blogs/${blog.slug}`}>View Details</Link>
+            </button>
+          </div>
         </div>
       ))}
     </div>
