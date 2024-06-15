@@ -15,7 +15,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Navbar></Navbar>
         {children}
-        <footer>This is my footer</footer>
+        <footer className="bg-blue-50 text-cyan-500 flex justify-center mt-10">
+          This is my footer
+        </footer>
       </body>
     </html>
   );
