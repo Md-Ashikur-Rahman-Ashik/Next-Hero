@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
+        <nav className="px-6 py-4 bg-blue-50">
           <h6>Logo</h6>
           <ul>
             <li>About</li>
