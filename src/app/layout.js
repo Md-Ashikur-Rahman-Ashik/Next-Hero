@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Navbar></Navbar>
-        {children}
+        <div className="min-h-screen">{children}</div>
         <footer className="bg-blue-50 text-cyan-500 flex justify-center mt-10">
           This is my footer
         </footer>
