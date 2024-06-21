@@ -7,7 +7,7 @@ const Page = () => {
         Choose Your Meals
       </h2>
       <p className="flex justify-center text-3xl mt-4">
-        Choose meals by searching...
+        Choose meals by searching with first letter...
       </p>
       <Meals></Meals>
     </div>
