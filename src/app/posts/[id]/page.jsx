@@ -6,6 +6,12 @@ const getDetails = async (id) => {
   return data;
 };
 
+export const generateMetaData = async ({ params }) => {
+  return {
+    title: `Post Details ${params.id}`,
+  };
+};
+
 const page = async ({ params }) => {
   const { title, body } = await getDetails(params.id);
 
