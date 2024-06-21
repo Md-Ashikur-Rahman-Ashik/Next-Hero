@@ -1,6 +1,11 @@
 import Link from "next/link";
 import React from "react";
 
+export const metadata = {
+  title: "Blogs | Next Hero",
+  description: "Blogs page",
+};
+
 const blogs = [
   {
     slug: "modern-web-development",

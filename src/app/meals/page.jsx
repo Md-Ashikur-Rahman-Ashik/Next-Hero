@@ -1,5 +1,10 @@
 import Meals from "@/components/Meals";
 
+export const metadata = {
+  title: "Meals | Next Hero",
+  description: "Meals Page",
+};
+
 const Page = () => {
   return (
     <div className="card card-compact container rounded-xl mx-auto">
