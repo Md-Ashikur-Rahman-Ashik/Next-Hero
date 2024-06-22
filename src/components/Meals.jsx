@@ -8,13 +8,13 @@ const Meals = () => {
   const [meals, setMeals] = useState([]);
   const leadData = async () => {
     try {
-      const res = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?f=${search}`
-      );
-      const data = await res.json();
-      setMeals(data.meals);
-      // console.log(meals);
-      setError("");
+      // const res = await fetch(
+      //   `https://www.themealdb.com/api/json/v1/1/search.php?f=${search}`
+      // );
+      // const data = await res.json();
+      // setMeals(data.meals);
+      // // console.log(meals);
+      // setError("");
     } catch (error) {
       // console.log(error);
       setError("No Data Found");
@@ -53,9 +53,9 @@ const Meals = () => {
         </button>
       </div>
       <div className="mt-12 grid grid-cols-3 gap-12 container rounded-xl mx-auto">
-        {meals.length > 0 &&
+        {meals?.length > 0 &&
           !error &&
-          meals.map((meal) => (
+          meals?.map((meal) => (
             <div key={meal.idMeal} className="border-2 p-4">
               <Image
                 className="rounded-xl mb-2"
