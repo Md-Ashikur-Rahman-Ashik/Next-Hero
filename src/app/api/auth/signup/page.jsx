@@ -9,6 +9,8 @@ const page = () => {
       name: event.target.name.value,
       email: event.target.email.value,
       password: event.target.password.value,
+      image: event.target.image.value,
+      type: event.target.type.value,
     };
 
     const res = await fetch("http://localhost:3000/api/auth/signup/new-user", {
@@ -50,6 +52,22 @@ const page = () => {
                   placeholder="Your Password"
                   className="rounded-xl p-2 border-gray-600 bg-gray-900 text-gray-100 focus:ring-violet-400 focus:border-violet-400 focus:ring-2"
                 />
+                <label className="mt-4 mb-2">Profile Image</label>
+                <input
+                  name="image"
+                  type="text"
+                  placeholder="Your Profile Image"
+                  className="rounded-xl p-2 border-gray-600 bg-gray-900 text-gray-100 focus:ring-violet-400 focus:border-violet-400 focus:ring-2"
+                />
+                <label className="mt-4 mb-2">Type</label>
+                <select
+                  name="type"
+                  className="rounded-xl p-2 border-gray-600 bg-gray-900 text-gray-100 focus:ring-violet-400 focus:border-violet-400 focus:ring-2"
+                >
+                  <option value="admin">Admin</option>
+                  <option value="moderator">Moderator</option>
+                  <option value="member">Member</option>
+                </select>
               </div>
               <input
                 className="px-8 py-3 space-x-2 font-semibold rounded bg-cyan-50 text-cyan-900"

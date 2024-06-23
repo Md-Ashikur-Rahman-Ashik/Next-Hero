@@ -1,3 +1,4 @@
+import connectDB from "@/lib/connectDB";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -29,7 +30,9 @@ export const authOptions = {
         if (!credentials) {
           return null;
         } else if (email) {
-          const currentUser = users.find((user) => user.email === email);
+          // const currentUser = users.find((user) => user.email === email);
+          const db = await connectDB();
+          const currentUser = await db.collection("users").findOne({ email });
           if (currentUser) {
             if (currentUser.password === password) {
               return { ...currentUser };
@@ -60,26 +63,26 @@ const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
 
-const users = [
-  {
-    id: 1,
-    name: "Ashik",
-    email: "ashik@gmail.com",
-    password: "password",
-    type: "admin",
-  },
-  {
-    id: 2,
-    name: "Ashikur Rahman",
-    email: "ashik@palestine.com",
-    password: "AshPatient@P",
-    type: "moderator",
-  },
-  {
-    id: 3,
-    name: "Ashikur Rahman Ashik",
-    email: "ashikur.rahman@palestine.com",
-    password: "AshPatient@P",
-    type: "member",
-  },
-];
+// const users = [
+//   {
+//     id: 1,
+//     name: "Ashik",
+//     email: "ashik@gmail.com",
+//     password: "password",
+//     type: "admin",
+//   },
+//   {
+//     id: 2,
+//     name: "Ashikur Rahman",
+//     email: "ashik@palestine.com",
+//     password: "AshPatient@P",
+//     type: "moderator",
+//   },
+//   {
+//     id: 3,
+//     name: "Ashikur Rahman Ashik",
+//     email: "ashikur.rahman@palestine.com",
+//     password: "AshPatient@P",
+//     type: "member",
+//   },
+// ];
