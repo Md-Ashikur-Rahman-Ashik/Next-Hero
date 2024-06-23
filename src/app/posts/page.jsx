@@ -1,6 +1,8 @@
 // import { postsData } from "@/services/postAPI";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export const metadata = {
   title: "Posts | Next Hero",
@@ -9,6 +11,8 @@ export const metadata = {
 
 const page = async () => {
   // const postData = await postsData();
+  const session = await getServerSession(authOptions);
+  // console.log(session);
 
   return (
     <div className="card card-compact container rounded-xl mx-auto">

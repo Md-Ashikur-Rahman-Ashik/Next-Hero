@@ -1,6 +1,7 @@
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import AuthProvider from "@/services/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({ weight: ["400", "500"], subsets: ["latin"] });
@@ -14,11 +15,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <Navbar></Navbar>
-        <div className="min-h-screen">{children}</div>
-        <footer className="bg-blue-50 text-cyan-500 flex justify-center mt-10">
-          This is my footer
-        </footer>
+        <AuthProvider>
+          <Navbar></Navbar>
+          <div className="min-h-screen">{children}</div>
+          <footer className="bg-blue-50 text-cyan-500 flex justify-center mt-10">
+            This is my footer
+          </footer>
+        </AuthProvider>
       </body>
     </html>
   );
