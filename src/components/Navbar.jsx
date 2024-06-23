@@ -32,6 +32,10 @@ const Navbar = () => {
     router.push("/api/auth/signin");
   };
 
+  const signUpHandler = () => {
+    router.push("/api/auth/signup");
+  };
+
   // if (pathName.includes("dashboard")) {
   //   return (
   //     <div className="bg-blue-100 flex justify-center p-6">
@@ -42,7 +46,7 @@ const Navbar = () => {
 
   return (
     <div className="mb-10">
-      <nav className="px-6 py-4 bg-blue-50 flex justify-between items-center">
+      <nav className="px-6 py-4 bg-blue-50 flex justify-center gap-20 items-center">
         <h6 className="font-bold text-3xl">
           <Link href={"/"}>
             Next <span className="text-cyan-500">Hero</span>
@@ -65,8 +69,8 @@ const Navbar = () => {
           {session?.data?.user && (
             <Image
               src={"https://picsum.photos/200/300"}
-              height={30}
-              width={40}
+              height={0}
+              width={30}
               alt=""
               className="rounded-full"
             ></Image>
@@ -77,12 +81,20 @@ const Navbar = () => {
           </h6>
         </div>
         {!session?.data?.user ? (
-          <button
-            onClick={handler}
-            className="bg-white text-cyan-500 font-bold p-2 rounded-xl"
-          >
-            Login
-          </button>
+          <div className="flex gap-4">
+            <button
+              onClick={handler}
+              className="bg-white text-cyan-500 font-bold p-2 rounded-xl"
+            >
+              Login
+            </button>
+            <button
+              onClick={signUpHandler}
+              className="bg-white text-cyan-500 font-bold p-2 rounded-xl"
+            >
+              Sign Up
+            </button>
+          </div>
         ) : (
           <button
             onClick={() => signOut()}
