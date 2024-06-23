@@ -1,5 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
@@ -56,6 +57,19 @@ const Navbar = () => {
             </Link>
           ))}
         </ul>
+        <div className="flex gap-4 items-center">
+          <Image
+            src={"https://picsum.photos/200/300"}
+            height={50}
+            width={40}
+            alt=""
+            className="rounded-xl"
+          ></Image>
+          <h6 className="font-bold">{session?.data?.user?.name}</h6>
+          <h6 className="capitalize text-cyan-600 border-2 rounded-xl p-2">
+            {session?.data?.user?.type}
+          </h6>
+        </div>
         {session.status === "authenticated" ? (
           <button
             onClick={handler}

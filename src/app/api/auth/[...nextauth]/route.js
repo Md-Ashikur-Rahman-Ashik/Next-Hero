@@ -5,6 +5,7 @@ export const authOptions = {
   secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
   },
   providers: [
     CredentialsProvider({
@@ -31,7 +32,7 @@ export const authOptions = {
           const currentUser = users.find((user) => user.email === email);
           if (currentUser) {
             if (currentUser.password === password) {
-              return currentUser;
+              return { ...currentUser };
             }
           }
         } else {
@@ -40,6 +41,19 @@ export const authOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, account, user }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (account) {
+        token.type = user.type;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.type = token.type;
+      return session;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
@@ -52,5 +66,20 @@ const users = [
     name: "Ashik",
     email: "ashik@gmail.com",
     password: "password",
+    type: "admin",
+  },
+  {
+    id: 2,
+    name: "Ashikur Rahman",
+    email: "ashik@palestine.com",
+    password: "AshPatient@P",
+    type: "moderator",
+  },
+  {
+    id: 3,
+    name: "Ashikur Rahman Ashik",
+    email: "ashikur.rahman@palestine.com",
+    password: "AshPatient@P",
+    type: "member",
   },
 ];
