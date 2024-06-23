@@ -1,5 +1,5 @@
 "use client";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -22,19 +22,23 @@ const Navbar = () => {
       title: "Meals",
       path: "/meals",
     },
+    {
+      title: "Dashboard",
+      path: "/dashboard",
+    },
   ];
 
   const handler = () => {
     router.push("/api/auth/signin");
   };
 
-  if (pathName.includes("dashboard")) {
-    return (
-      <div className="bg-blue-100 flex justify-center p-6">
-        Dashboard Layout
-      </div>
-    );
-  }
+  // if (pathName.includes("dashboard")) {
+  //   return (
+  //     <div className="bg-blue-100 flex justify-center p-6">
+  //       Dashboard Layout
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="mb-10">
@@ -58,19 +62,21 @@ const Navbar = () => {
           ))}
         </ul>
         <div className="flex gap-4 items-center">
-          <Image
-            src={"https://picsum.photos/200/300"}
-            height={50}
-            width={40}
-            alt=""
-            className="rounded-xl"
-          ></Image>
+          {session?.data?.user && (
+            <Image
+              src={"https://picsum.photos/200/300"}
+              height={30}
+              width={40}
+              alt=""
+              className="rounded-full"
+            ></Image>
+          )}
           <h6 className="font-bold">{session?.data?.user?.name}</h6>
           <h6 className="capitalize text-cyan-600 border-2 rounded-xl p-2">
             {session?.data?.user?.type}
           </h6>
         </div>
-        {session.status === "authenticated" ? (
+        {!session?.data?.user ? (
           <button
             onClick={handler}
             className="bg-white text-cyan-500 font-bold p-2 rounded-xl"
@@ -78,7 +84,10 @@ const Navbar = () => {
             Login
           </button>
         ) : (
-          <button className="bg-white text-cyan-500 font-bold p-2 rounded-xl">
+          <button
+            onClick={() => signOut()}
+            className="bg-white text-cyan-500 font-bold p-2 rounded-xl"
+          >
             Logout
           </button>
         )}
